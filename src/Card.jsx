@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Card = () => {
     return (
@@ -11,8 +13,10 @@ const Card = () => {
                 placeholder='Type to add a note...'
             ></textarea>
             <div className="card__bottom">
-                <div className="card__remainig-chars">200 Remaining</div>
-                <div className="card__save-btn">Save</div>
+                <div className="card__date">06/10/2022</div>
+                <div className="card__delete-btn">
+                    <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                </div>
             </div>
         </div>
     )

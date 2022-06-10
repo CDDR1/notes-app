@@ -1,3 +1,11 @@
+/* || CUSTOM PROPERTIES */
+:root {
+    --background-color: #fff;
+    --primary-color: #fff585;
+    --secondary-color: #e6e6e6;
+    --accent-color: #63d1c4;
+}
+
 /* || GENERAL STYLES */
 html {
     font-size: 62.5%;
@@ -5,7 +13,7 @@ html {
     scroll-behavior: smooth;
 }
 
-*, 
+*,
 *::before,
 *::after {
     box-sizing: inherit;
@@ -15,7 +23,7 @@ html {
 
 body {
     font-family: sans-serif;
-    font-size: var(--fs-100);
+    font-size: 2rem;
     overflow-x: hidden;
 }
 
@@ -43,19 +51,102 @@ button,
 input,
 select,
 textarea {
-  font-family: inherit;
-  font-size: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-}
-
-input {
+    font-family: inherit;
+    font-size: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: inherit;
     outline: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 textarea {
-  overflow: auto;
-  outline: none;
+    overflow: auto;
+    resize: none;
+}
+
+/* || APP */
+.app {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.app__container {
+    width: 80vw;
+}
+
+.app__main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.app__main-title {
+    font-size: 6rem;
+}
+
+.app__toggle-mode-btn {
+    background-color: var(--secondary-color);
+    border: none;
+    height: 4.5rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app__searchbar {
+    width: 100%;
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 4rem 0;
+}
+
+.app__cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+
+/* || CARD */
+.card {
+    background-color: var(--primary-color);
+    width: 32.25%;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.card__textarea {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 25vh;
+}
+
+.card__bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+/* || INPUT CARD */
+.card--input {
+    background-color: var(--accent-color);
+}
+
+.card__save-btn {
+    background-color: var(--secondary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
 }
