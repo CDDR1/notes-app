@@ -10,7 +10,7 @@ const Card = () => {
                 name="card-text" 
                 id="card-text" 
                 maxLength={200}
-                placeholder='Type to add a note...'
+                value="Some value here"
             ></textarea>
             <div className="card__bottom">
                 <div className="card__date">06/10/2022</div>

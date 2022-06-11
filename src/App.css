@@ -114,9 +114,8 @@ textarea {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    row-gap: 2rem;
 }
-
-
 
 /* || CARD */
 .card {
@@ -136,9 +135,8 @@ textarea {
 .card__bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
-
-
 
 /* || INPUT CARD */
 .card--input {
@@ -149,4 +147,5 @@ textarea {
     background-color: var(--secondary-color);
     padding: 0.75rem 1.5rem;
     border-radius: 20px;
+    border: none;
 }
