@@ -46,23 +46,14 @@ const App = () => {
                 <input className="app__searchbar" placeholder="type to search..."></input>
                 <div className="app__cards">
                     {
-                        (cards.length > 0) ? 
-                        <> 
-                            {cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} />)} 
-                            <AddCard 
-                                maxLength={maxTextLength} 
-                                onTextChange={handleTextChange} 
-                                remainingChars={maxTextLength - cardText.length} 
-                                onSave={handleCardSave}
-                            />
-                        </> : 
-                        <AddCard 
-                            maxLength={maxTextLength} 
-                            onTextChange={handleTextChange} 
-                            remainingChars={maxTextLength - cardText.length} 
-                            onSave={handleCardSave}
-                        /> 
+                        cards.length > 0 && cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} />)
                     }
+                    <AddCard 
+                        maxLength={maxTextLength} 
+                        onTextChange={handleTextChange} 
+                        remainingChars={maxTextLength - cardText.length} 
+                        onSave={handleCardSave}
+                    /> 
                 </div>
             </div>
         </div>
