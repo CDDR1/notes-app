@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 
-const getTextLength = () => {
-    // Returns the text length of the textarea in the card.
-    return document.querySelector(".card__textarea").value.length;  
+const getRemainingChars = (maxLength) => {
+    return maxLength - document.querySelector(".card__textarea").value.length;  
 };
 
 const AddCard = () => {
-    let [currentChars, setCurrentChars] = useState(0);
     const maxLength = 200;
+    let [remainingChars, setRemainingChars] = useState(maxLength);
 
     return (
         <div className='card card--input'>
@@ -18,10 +17,10 @@ const AddCard = () => {
                 id="card-text" 
                 maxLength={maxLength}
                 placeholder='Type to add a note...'
-                onChange={() => setCurrentChars(getTextLength())}
+                onChange={() => setRemainingChars(getRemainingChars(maxLength))}
             ></textarea>
             <div className="card__bottom">
-                <div className="card__remainig-chars">{maxLength - currentChars} Remaining</div>
+                <div className="card__remainig-chars">{remainingChars} Remaining</div>
                 <button 
                 className="card__save-btn"
                 onClick={() => console.log("clicked")}
