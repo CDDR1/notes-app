@@ -2,12 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const getDate = () => {
-    const currentDate = new Date();
-    return `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
-};
-
-const Card = () => {
+const Card = (props) => {
     return (
         <div className='card'>
             <textarea 
@@ -15,10 +10,11 @@ const Card = () => {
                 name="card-text" 
                 id="card-text" 
                 maxLength={200}
-                value="Some value here"
+                value={props.text}
+                readOnly="readOnly"
             ></textarea>
             <div className="card__bottom">
-                <div className="card__date">{getDate()}</div>
+                <div className="card__date">{props.date}</div>
                 <div className="card__delete-btn">
                     <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
                 </div>

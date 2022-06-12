@@ -5,19 +5,35 @@ import AddCard from "./AddCard.jsx";
 
 const App = () => {
     const [darkTheme, setDarkTheme] = useState(false);
-    const [cards, setCards] = useState(0);
+    const [cards, setCards] = useState([]);
     const [cardText, setCardText] = useState('');
     const maxTextLength = 200;
 
-    const handleTextChange = (text) => {
-        setCardText(text);
+    const getCardID = () => {
+        return cards.length + 1;
     };
 
-    const displayCards = () => {
-        if (cards > 0) {
-            return <Card />;
-        }
-        return <AddCard maxLength={maxTextLength} onTextChange={handleTextChange} remainingChars={maxTextLength - cardText.length} />; 
+    const getDate = () => {
+        const currentDate = new Date();
+        return `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+    };
+
+    const addCardToState = (newCard) => {
+        setCards(state => [...state, newCard]);
+    };      
+
+    const handleCardSave = () => {
+        const newCard = {
+            cardID: getCardID(),
+            cardText: cardText,
+            cardDate: getDate(),
+        };
+        addCardToState(newCard);
+        setCardText('');
+    };
+
+    const handleTextChange = (text) => {
+        setCardText(text);
     };
 
     return (
@@ -28,7 +44,26 @@ const App = () => {
                     <button className="app__toggle-mode-btn">Toggle Mode</button>
                 </nav>
                 <input className="app__searchbar" placeholder="type to search..."></input>
-                <div className="app__cards">{displayCards()}</div>
+                <div className="app__cards">
+                    {
+                        (cards.length > 0) ? 
+                        <> 
+                            {cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} />)} 
+                            <AddCard 
+                                maxLength={maxTextLength} 
+                                onTextChange={handleTextChange} 
+                                remainingChars={maxTextLength - cardText.length} 
+                                onSave={handleCardSave}
+                            />
+                        </> : 
+                        <AddCard 
+                            maxLength={maxTextLength} 
+                            onTextChange={handleTextChange} 
+                            remainingChars={maxTextLength - cardText.length} 
+                            onSave={handleCardSave}
+                        /> 
+                    }
+                </div>
             </div>
         </div>
     );
