@@ -5,7 +5,7 @@ const getRemainingChars = (maxLength) => {
     return maxLength - document.querySelector(".card__textarea").value.length;  
 };
 
-const AddCard = () => {
+const AddCard = (props) => {
     const maxLength = 200;
     let [remainingChars, setRemainingChars] = useState(maxLength);
 
@@ -15,12 +15,12 @@ const AddCard = () => {
                 className='card__textarea'
                 name="card-text" 
                 id="card-text" 
-                maxLength={maxLength}
+                maxLength={props.maxLength}
                 placeholder='Type to add a note...'
-                onChange={() => setRemainingChars(getRemainingChars(maxLength))}
+                onChange={() => props.onTextChange(document.querySelector(".card__textarea").value)}
             ></textarea>
             <div className="card__bottom">
-                <div className="card__remainig-chars">{remainingChars} Remaining</div>
+                <div className="card__remainig-chars">{props.remainingChars} Remaining</div>
                 <button 
                 className="card__save-btn"
                 onClick={() => console.log("clicked")}
