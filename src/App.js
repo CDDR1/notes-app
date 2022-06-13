@@ -10,6 +10,11 @@ const App = () => {
     const [cardText, setCardText] = useState('');
     const maxTextLength = 200;
 
+    const deleteCard = (cardID) => {
+        const updatedCards = cards.filter(card => card.cardID !== cardID);
+        setCards(updatedCards);
+    };
+
     const getCardID = () => {
         return uuidv4();
     };
@@ -48,7 +53,7 @@ const App = () => {
                 <input className="app__searchbar" placeholder="type to search..."></input>
                 <div className="app__cards">
                     {
-                        cards.length > 0 && cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} />)
+                        cards.length > 0 && cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} cardID={card.cardID} removeCard={deleteCard} />)
                     }
                     <AddCard 
                         maxLength={maxTextLength} 

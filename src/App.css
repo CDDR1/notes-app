@@ -138,6 +138,11 @@ textarea {
     align-items: center;
 }
 
+.card__delete-btn {
+    border: none;
+    background-color: transparent;
+}
+
 /* || INPUT CARD */
 .card--input {
     background-color: var(--accent-color);

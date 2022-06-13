@@ -15,9 +15,12 @@ const Card = (props) => {
             ></textarea>
             <div className="card__bottom">
                 <div className="card__date">{props.date}</div>
-                <div className="card__delete-btn">
+                <button 
+                    className="card__delete-btn"
+                    onClick={() => props.removeCard(props.cardID)}
+                >
                     <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-                </div>
+                </button>
             </div>
         </div>
     )
