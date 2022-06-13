@@ -111,16 +111,15 @@ textarea {
 }
 
 .app__cards {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    row-gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
 /* || CARD */
 .card {
     background-color: var(--primary-color);
-    width: 32.25%;
+    width: 100%;
     padding: 2rem;
     border-radius: 10px;
 }
