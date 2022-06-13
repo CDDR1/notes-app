@@ -22,7 +22,7 @@ const App = () => {
         setCards(state => [...state, newCard]);
     };      
 
-    const handleCardSave = () => {
+    const handleCardSave = (textarea) => {
         const newCard = {
             cardID: getCardID(),
             cardText: cardText,
@@ -30,6 +30,7 @@ const App = () => {
         };
         addCardToState(newCard);
         setCardText('');
+        textarea.value = '';
     };
 
     const handleTextChange = (text) => {
