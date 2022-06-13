@@ -10,6 +10,12 @@ const App = () => {
     const [cardText, setCardText] = useState('');
     const maxTextLength = 200;
 
+    const toggleDarkMode = (darkTheme) => {
+        document.querySelector(".app").classList.toggle("app--dark");
+        document.querySelector(".app__main-title").classList.toggle("main-title--light");
+        darkTheme ? setDarkTheme(false) : setDarkTheme(true);
+    };
+
     const deleteCard = (cardID) => {
         const updatedCards = cards.filter(card => card.cardID !== cardID);
         setCards(updatedCards);
@@ -48,7 +54,10 @@ const App = () => {
             <div className="app__container">
                 <nav className="app__main-nav">
                     <h1 className="app__main-title">Notes</h1>
-                    <button className="app__toggle-mode-btn">Toggle Mode</button>
+                    <button 
+                        className="app__toggle-mode-btn"
+                        onClick={() => toggleDarkMode(darkTheme)}
+                    >Toggle Mode</button>
                 </nav>
                 <input className="app__searchbar" placeholder="type to search..."></input>
                 <div className="app__cards">
