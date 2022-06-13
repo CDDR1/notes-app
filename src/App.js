@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
 import Card from "./Card.jsx";
 import AddCard from "./AddCard.jsx";
@@ -10,7 +11,7 @@ const App = () => {
     const maxTextLength = 200;
 
     const getCardID = () => {
-        return cards.length + 1;
+        return uuidv4();
     };
 
     const getDate = () => {
