@@ -4,7 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Card = (props) => {
     return (
-        <div className='card'>
+        <div className='card card--added'>
             <textarea 
                 className='card__textarea'
                 name="card-text" 

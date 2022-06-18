@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
 import Card from "./Card.jsx";
@@ -8,7 +8,28 @@ const App = () => {
     const [darkTheme, setDarkTheme] = useState(false);
     const [cards, setCards] = useState([]);
     const [cardText, setCardText] = useState('');
+    const [searchbarText, setSearchbarText] = useState('');
     const maxTextLength = 200;
+
+    useEffect(() => {
+        const localStorageCards = JSON.parse(localStorage.getItem("cards"));
+        if (localStorageCards) {
+            setCards(localStorageCards);
+        }
+
+        const darkThemeOn = JSON.parse(localStorage.getItem("darkTheme"));
+        if (darkThemeOn) {
+            setDarkTheme(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("cards", JSON.stringify(cards));
+    }, [cards]);
+
+    useEffect(() => {
+        localStorage.setItem("darkTheme", JSON.stringify(darkTheme));
+    }, [darkTheme]);
 
     const toggleDarkMode = (darkTheme) => {
         document.querySelector(".app").classList.toggle("app--dark");
@@ -59,10 +80,23 @@ const App = () => {
                         onClick={() => toggleDarkMode(darkTheme)}
                     >Toggle Mode</button>
                 </nav>
-                <input className="app__searchbar" placeholder="type to search..."></input>
+                <input 
+                    className="app__searchbar" 
+                    placeholder="type to search..."
+                    onChange={(e) => setSearchbarText(e.target.value)}
+                ></input>
                 <div className="app__cards">
                     {
-                        cards.length > 0 && cards.map(card => <Card text={card.cardText} date={card.cardDate} key={card.cardID} cardID={card.cardID} removeCard={deleteCard} />)
+                        cards.filter(card => card.cardText.toLowerCase().slice(0, searchbarText.length) === searchbarText.toLowerCase()).
+                        map(card => 
+                            <Card 
+                                text={card.cardText} 
+                                date={card.cardDate} 
+                                key={card.cardID} 
+                                cardID={card.cardID} 
+                                removeCard={deleteCard} 
+                            />    
+                        )
                     }
                     <AddCard 
                         maxLength={maxTextLength} 
