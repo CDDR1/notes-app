@@ -87,8 +87,9 @@ const App = () => {
                 ></input>
                 <div className="app__cards">
                     {
-                        cards.filter(card => card.cardText.toLowerCase().slice(0, searchbarText.length) === searchbarText.toLowerCase()).
-                        map(card => 
+                        cards
+                        .filter(card => card.cardText.toLowerCase().slice(0, searchbarText.length) === searchbarText.toLowerCase())
+                        .map(card => 
                             <Card 
                                 text={card.cardText} 
                                 date={card.cardDate} 
