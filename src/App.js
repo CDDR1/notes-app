@@ -6,30 +6,30 @@ import AddCard from "./AddCard.jsx";
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState(JSON.parse(localStorage.getItem("savedCards")));
     const [cardText, setCardText] = useState('');
     const [searchbarText, setSearchbarText] = useState('');
     const maxTextLength = 200;
 
     useEffect(() => {
-        const localStorageCards = JSON.parse(localStorage.getItem("cards"));
-        if (localStorageCards) {
-            setCards(localStorageCards);
-        }
-
-        // const darkThemeOn = JSON.parse(localStorage.getItem("darkTheme"));
-        // if (darkThemeOn) {
-        //     setDarkTheme(true);
+        // const savedCards = JSON.parse(localStorage.getItem("savedCards"));
+        // if (savedCards) {
+        //     setCards(savedCards);
         // }
+
+        const darkModeOn = JSON.parse(localStorage.getItem("darkMode"));
+        if (darkModeOn) {
+            setDarkMode(true);
+        }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("cards", JSON.stringify(cards));
+        localStorage.setItem("savedCards", JSON.stringify(cards));
     }, [cards]);
 
-    // useEffect(() => {
-    //     localStorage.setItem("darkTheme", JSON.stringify(darkTheme));
-    // }, [darkTheme]);
+    useEffect(() => {
+        localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    }, [darkMode]);
 
     const deleteCard = (cardID) => {
         const updatedCards = cards.filter(card => card.cardID !== cardID);
