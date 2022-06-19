@@ -82,11 +82,15 @@ textarea {
     background-color: #000;
 }
 
+.app--dark h1 {
+    color: #fff;
+}
+
 .app__container {
     width: 80vw;
 }
 
-.app__main-nav {
+.app__header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -94,10 +98,6 @@ textarea {
 
 .app__main-title {
     font-size: 6rem;
-}
-
-.main-title--light {
-    color: #fff;
 }
 
 .app__toggle-mode-btn {

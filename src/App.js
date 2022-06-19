@@ -5,7 +5,7 @@ import Card from "./Card.jsx";
 import AddCard from "./AddCard.jsx";
 
 const App = () => {
-    const [darkTheme, setDarkTheme] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
     const [cards, setCards] = useState([]);
     const [cardText, setCardText] = useState('');
     const [searchbarText, setSearchbarText] = useState('');
@@ -17,25 +17,19 @@ const App = () => {
             setCards(localStorageCards);
         }
 
-        const darkThemeOn = JSON.parse(localStorage.getItem("darkTheme"));
-        if (darkThemeOn) {
-            setDarkTheme(true);
-        }
+        // const darkThemeOn = JSON.parse(localStorage.getItem("darkTheme"));
+        // if (darkThemeOn) {
+        //     setDarkTheme(true);
+        // }
     }, []);
 
     useEffect(() => {
         localStorage.setItem("cards", JSON.stringify(cards));
     }, [cards]);
 
-    useEffect(() => {
-        localStorage.setItem("darkTheme", JSON.stringify(darkTheme));
-    }, [darkTheme]);
-
-    const toggleDarkMode = (darkTheme) => {
-        document.querySelector(".app").classList.toggle("app--dark");
-        document.querySelector(".app__main-title").classList.toggle("main-title--light");
-        darkTheme ? setDarkTheme(false) : setDarkTheme(true);
-    };
+    // useEffect(() => {
+    //     localStorage.setItem("darkTheme", JSON.stringify(darkTheme));
+    // }, [darkTheme]);
 
     const deleteCard = (cardID) => {
         const updatedCards = cards.filter(card => card.cardID !== cardID);
@@ -71,15 +65,15 @@ const App = () => {
     };
 
     return (
-        <div className="app">
+        <div className={`app ${darkMode && "app--dark"}`}>
             <div className="app__container">
-                <nav className="app__main-nav">
+                <header className="app__header">
                     <h1 className="app__main-title">Notes</h1>
                     <button 
                         className="app__toggle-mode-btn"
-                        onClick={() => toggleDarkMode(darkTheme)}
+                        onClick={() => setDarkMode(!darkMode)}
                     >Toggle Mode</button>
-                </nav>
+                </header>
                 <input 
                     className="app__searchbar" 
                     placeholder="type to search..."
