@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
 import Card from "./Card.jsx";
 import AddCard from "./AddCard.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -12,11 +14,6 @@ const App = () => {
     const maxTextLength = 200;
 
     useEffect(() => {
-        // const savedCards = JSON.parse(localStorage.getItem("savedCards"));
-        // if (savedCards) {
-        //     setCards(savedCards);
-        // }
-
         const darkModeOn = JSON.parse(localStorage.getItem("darkMode"));
         if (darkModeOn) {
             setDarkMode(true);
@@ -74,11 +71,14 @@ const App = () => {
                         onClick={() => setDarkMode(!darkMode)}
                     >Toggle Mode</button>
                 </header>
-                <input 
-                    className="app__searchbar" 
-                    placeholder="type to search..."
-                    onChange={(e) => setSearchbarText(e.target.value)}
-                ></input>
+                <div className="app__searchbar-container">
+                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
+                    <input
+                        className="app__searchbar"
+                        placeholder="type to search..."
+                        onChange={(e) => setSearchbarText(e.target.value)}
+                    ></input>
+                </div>
                 <div className="app__cards">
                     {
                         cards

@@ -111,18 +111,28 @@ textarea {
     align-items: center;
 }
 
-.app__searchbar {
-    width: 100%;
+.app__toggle-mode-btn:hover {
+    background-color: rgb(199, 197, 197);
+}
+
+.app__searchbar-container {
     background-color: var(--secondary-color);
-    border: none;
-    padding: 1.5rem;
     border-radius: 15px;
+    padding: 1.5rem;
     margin: 4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app__searchbar {
+    background-color: inherit;
+    border: none;
 }
 
 .app__cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
     gap: 2rem;
 }
 
@@ -163,4 +173,30 @@ textarea {
     padding: 0.75rem 1.75rem;
     border-radius: 20px;
     border: none;
+}
+
+.card__save-btn:hover {
+    background-color: rgb(199, 197, 197);
+}
+
+/* || RESPONSIVE */
+@media (max-width: 460px) {
+    .app__main-title {
+        font-size: 8rem;
+    }
+
+    .app__header {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .app__toggle-mode-btn {
+        padding: 3.5rem 4rem;
+        border-radius: 30px;
+    }
+
+    .app__cards {
+        grid-template-columns: 1fr;
+    }
 }
