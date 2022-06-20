@@ -8,7 +8,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const [cards, setCards] = useState(JSON.parse(localStorage.getItem("savedCards")));
+    const [cards, setCards] = useState(JSON.parse(localStorage.getItem("savedCards")) || []);
     const [cardText, setCardText] = useState('');
     const [searchbarText, setSearchbarText] = useState('');
     const maxTextLength = 200;
